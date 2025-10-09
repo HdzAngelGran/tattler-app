@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { Coordinates } from './coordinates.model.js'
 
 export const AddressSchema = Schema({
   street: {
@@ -13,13 +14,12 @@ export const AddressSchema = Schema({
     type: String,
     required: [true, 'State is required'],
   },
-  zip: {
-    type: Number,
-    required: [true, 'Zip is required'],
+  zipCode: {
+    type: String,
+    required: [true, 'Zip code is required'],
   },
   coord: {
-    type: [Number],
-    default: [],
+    type: [Coordinates.schema],
     required: [true, 'Coordinates are required'],
   },
   building: {

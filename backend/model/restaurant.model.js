@@ -1,7 +1,6 @@
 import { Schema, model } from 'mongoose'
-import { User } from './user.model'
-import { Review } from './review.model'
-import { Address } from './address.model'
+import { User } from './user.model.js'
+import { Address } from './address.model.js'
 
 export const RestaurantSchema = Schema(
   {
@@ -11,34 +10,33 @@ export const RestaurantSchema = Schema(
     },
     description: {
       type: String,
-      required: [true, 'Description is required'],
+      default: '',
+      required: false,
     },
     cuisine: {
       type: String,
       required: [true, 'Cuisine is required'],
     },
     priceRange: {
-      type: String,
+      type: Number,
+      min: 1,
+      max: 5,
       required: [true, 'Price range is required'],
     },
     address: {
       type: String,
       required: [true, 'Address is required'],
     },
-    reviews: {
-      type: [Review.schema],
-      default: [],
-      required: false,
-    },
     createdBy: {
-      type: [User.schema],
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: [true, 'User is required'],
     },
     address: {
       type: [Address.schema],
       required: [true, 'Address is required'],
     },
-    Image: {
+    image: {
       type: String,
       get: (v) => `${process.env.FRONT_URL}${v}`,
       required: [true, 'Image is required'],

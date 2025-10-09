@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 
 export const UserSchema = mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: [true, 'Name is required'],
+    },
     username: {
       type: String,
       default: '',
