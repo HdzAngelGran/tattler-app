@@ -6,24 +6,14 @@ class RestaurantController {
   }
 
   getAll = async (req, res) => {
-    try {
-      const restaurants = await this.model.find()
-      res.status(200).json(restaurants)
-    } catch (error) {
-      console.error('Error finding list:', error)
-      res.status(500).send('Internal Server Error')
-    }
+    const restaurants = await this.model.find()
+    res.status(200).json(restaurants)
   }
 
   add = async (req, res) => {
     const { body } = req
-    try {
-      const restaurant = await this.model.create(body)
-      res.status(200).json({ message: restaurant })
-    } catch (error) {
-      console.error('Error finding list:', error)
-      res.status(500).send('Internal Server Error')
-    }
+    const restaurant = await this.model.create(body)
+    res.status(200).json({ message: restaurant })
   }
 }
 

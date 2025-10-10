@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
-import { User } from './user.model.js'
 import { Address } from './address.model.js'
+import mongooseErrorHandler from '../middleware/mongooseErrorHandler.js'
 
 export const RestaurantSchema = Schema(
   {
@@ -23,17 +23,13 @@ export const RestaurantSchema = Schema(
       max: 5,
       required: [true, 'Price range is required'],
     },
-    address: {
-      type: String,
-      required: [true, 'Address is required'],
-    },
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: [true, 'User is required'],
     },
     address: {
-      type: [Address.schema],
+      type: Address.schema,
       required: [true, 'Address is required'],
     },
     image: {
@@ -46,5 +42,12 @@ export const RestaurantSchema = Schema(
     timestamps: true,
   }
 )
+
+RestaurantSchema.index({ name: 1, 'address.street': 1 }, { unique: true })
+
+const restaurantErrorHandler = mongooseErrorHandler(
+  'A restaurant with this name already exists at this address'
+)
+RestaurantSchema.schema.post('save', restaurantErrorHandler)
 
 export const Restaurant = model('Restaurant', RestaurantSchema)
