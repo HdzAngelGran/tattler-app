@@ -48,6 +48,6 @@ RestaurantSchema.index({ name: 1, 'address.street': 1 }, { unique: true })
 const restaurantErrorHandler = mongooseErrorHandler(
   'A restaurant with this name already exists at this address'
 )
-RestaurantSchema.schema.post('save', restaurantErrorHandler)
+RestaurantSchema.post('save', restaurantErrorHandler)
 
 export const Restaurant = model('Restaurant', RestaurantSchema)
