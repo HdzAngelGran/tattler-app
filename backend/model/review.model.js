@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import mongooseErrorHandler from '../middleware/mongooseErrorHandler'
 
 export const ReviewSchema = Schema(
   {
@@ -29,5 +30,9 @@ export const ReviewSchema = Schema(
 )
 
 ReviewSchema.index({ restaurant: 1, email: 1 }, { unique: true })
+const reviewErrorHandler = mongooseErrorHandler(
+  'This email has already submitted a review for this restaurant'
+)
+ReviewSchema.schema.post('save', reviewErrorHandler)
 
 export const Review = model('Review', ReviewSchema)
