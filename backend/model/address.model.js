@@ -19,7 +19,7 @@ export const AddressSchema = Schema({
     required: [true, 'Zip code is required'],
   },
   coord: {
-    type: [Coordinates.schema],
+    type: Coordinates.schema,
     required: [true, 'Coordinates are required'],
   },
   building: {
@@ -27,5 +27,7 @@ export const AddressSchema = Schema({
     required: [true, 'Building is required'],
   },
 })
+
+AddressSchema.index({ coord: '2dsphere' })
 
 export const Address = model('Address', AddressSchema)
