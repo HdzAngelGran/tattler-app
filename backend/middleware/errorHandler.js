@@ -6,7 +6,9 @@ const errorHandler = (error, req, res, next) => {
   if (error instanceof TattlerError)
     return res.status(error.code).json({ message: error.message })
 
-  return res.status(500).json({ message: 'An internal server error occurred.' })
+  return res
+    .status(500)
+    .json({ message: 'An internal server error occurred: ' + error.message })
 }
 
 export default errorHandler
