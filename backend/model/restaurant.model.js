@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose'
 import { Address } from './address.model.js'
 import mongooseErrorHandler from '../middleware/mongooseErrorHandler.js'
+import { User } from './user.model.js'
 
 export const RestaurantSchema = Schema(
   {
@@ -27,6 +28,13 @@ export const RestaurantSchema = Schema(
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: [true, 'User is required'],
+      validate: {
+        validator: async function (value) {
+          const user = await User.findById(value)
+          return user !== null
+        },
+        message: 'Validation failed: User ID does not exist',
+      },
     },
     address: {
       type: Address.schema,
