@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import mongooseErrorHandler from '../middleware/mongooseErrorHandler.js'
 
 export const UserSchema = mongoose.Schema(
   {
@@ -6,20 +7,23 @@ export const UserSchema = mongoose.Schema(
       type: String,
       required: [true, 'Name is required'],
     },
-    username: {
+    email: {
       type: String,
-      default: '',
-      required: false,
-    },
-    password: {
-      type: Boolean,
       default: false,
-      required: false,
+      required: [true, 'Email is required'],
+      unique: true,
+      trim: true,
+      lowercase: true,
     },
   },
   {
     timestamps: true,
   }
 )
+
+const userErrorHandler = mongooseErrorHandler(
+  'A user with this email already exists'
+)
+UserSchema.post('save', userErrorHandler)
 
 export const User = mongoose.model('User', UserSchema)
