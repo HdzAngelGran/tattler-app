@@ -2,14 +2,9 @@ import { IconField } from 'primereact/iconfield'
 import { InputIcon } from 'primereact/inputicon'
 import { InputText } from 'primereact/inputtext'
 import { Dropdown } from 'primereact/dropdown'
-import { useEffect } from 'react'
 
 const Searchbar = (props) => {
   const { name, setName, cuisine, setCuisine } = props
-
-  useEffect(() => {
-    console.log(cuisine)
-  }, [cuisine])
 
   const cuisines = [
     { name: 'Mexican', code: 'Mexican' },
