@@ -1,4 +1,6 @@
+import TattlerError from '../middleware/tattlerError.js'
 import { Restaurant } from '../model/restaurant.model.js'
+import { Review } from '../model/review.model.js'
 
 class RestaurantController {
   constructor() {
@@ -70,6 +72,13 @@ class RestaurantController {
     const { body } = req
     const restaurant = await this.model.create(body)
     res.status(200).json({ message: restaurant })
+  }
+
+  getById = async (req, res) => {
+    const { id } = req.params
+    const restaurant = await this.model.findById(id).lean()
+    if (!restaurant) throw new TattlerError(404, 'Restaurant not found')
+    res.status(200).json(restaurant)
   }
 }
 

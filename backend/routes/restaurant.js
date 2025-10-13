@@ -10,6 +10,7 @@ const restaurantController = new RestaurantController()
 restaurantRouter.use('/:restaurantId/review', reviewRouter)
 
 restaurantRouter.get('/', restaurantController.getAll)
+restaurantRouter.get('/:id', restaurantController.getById)
 restaurantRouter.post('/', protect, restaurantController.add)
 
 export default restaurantRouter
