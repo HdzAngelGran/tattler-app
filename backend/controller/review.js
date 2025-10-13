@@ -8,7 +8,7 @@ class ReviewController {
   }
 
   getAll = async (req, res) => {
-    const { restaurantId } = req.query
+    const { restaurantId } = req.params
     const reviews = await this.model.find({ restaurant: restaurantId })
     res.status(200).json(reviews)
   }
