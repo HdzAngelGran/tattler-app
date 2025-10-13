@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "67b48129-ea37-47c4-9d82-789c032c8845",
+		"name": "Restaurants",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48947911",
+		"_collection_link": "https://arkn37-dev-3755422.postman.co/workspace/Tattler-App~1c19d5bd-91e6-442f-a6cb-661cf10f6504/collection/48947911-67b48129-ea37-47c4-9d82-789c032c8845?action=share&source=collection_link&creator=48947911"
+	},
+	"item": [
+		{
+			"name": "all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/restaurant?size=10&page=1&priceRange=2&rating=&cuisine=American&name=Cafe",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"restaurant"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "priceRange",
+							"value": "2"
+						},
+						{
+							"key": "rating",
+							"value": ""
+						},
+						{
+							"key": "cuisine",
+							"value": "American"
+						},
+						{
+							"key": "name",
+							"value": "Cafe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"name\": \"New Park Pizzeria & Restaurant\",\r\n    \"description\": \"\",\r\n    \"cuisine\": \"Pizza/Italian\",\r\n    \"priceRange\": 1,\r\n    \"address\": {\r\n      \"street\": \"Crossbay Boulevard\",\r\n      \"city\": \"Queens\",\r\n      \"state\": \"NY\",\r\n      \"zipCode\": \"11414\",\r\n      \"coord\": {\r\n        \"type\": \"Point\",\r\n        \"coordinates\": [-73.8404, 40.66272]\r\n      },\r\n      \"building\": \"156-71\"\r\n    },\r\n    \"image\": \"/default_image.jpg\",\r\n    \"createdAt\": \"2025-10-12T04:16:15.123Z\",\r\n    \"updatedAt\": \"2025-10-12T04:16:15.123Z\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/restaurant",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"restaurant"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

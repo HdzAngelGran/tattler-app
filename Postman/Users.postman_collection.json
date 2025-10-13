@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "53e52c3e-73de-4cec-9b30-e1cb30b642ce",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48947911",
+		"_collection_link": "https://arkn37-dev-3755422.postman.co/workspace/Tattler-App~1c19d5bd-91e6-442f-a6cb-661cf10f6504/collection/48947911-53e52c3e-73de-4cec-9b30-e1cb30b642ce?action=share&source=collection_link&creator=48947911"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ikki@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/user/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verifyToken",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/user/verify?token={{TOKEN}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"user",
+						"verify"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

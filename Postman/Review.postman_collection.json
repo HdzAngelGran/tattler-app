@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "f7feacbd-c627-44f9-bd1e-5c74fefaebe3",
+		"name": "Review",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48947911",
+		"_collection_link": "https://arkn37-dev-3755422.postman.co/workspace/Tattler-App~1c19d5bd-91e6-442f-a6cb-661cf10f6504/collection/48947911-f7feacbd-c627-44f9-bd1e-5c74fefaebe3?action=share&source=collection_link&creator=48947911"
+	},
+	"item": [
+		{
+			"name": "all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/restaurant/{{restaurantId}}/comment",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"restaurant",
+						"{{restaurantId}}",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rating\": 5,\r\n    \"comment\": \"The best\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/restaurant/{{restaurantId}}/review",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"restaurant",
+						"{{restaurantId}}",
+						"review"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "restaurantId",
+			"value": ""
+		}
+	]
+}
