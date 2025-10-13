@@ -9,6 +9,15 @@ export const getAllRestaurants = async (filters) => {
   return response.json()
 }
 
+export const getRestaurantById = async (restaurantId) => {
+  const URL = baseUrl + '/' + restaurantId
+  const response = await fetch(URL)
+  if (!response.ok) {
+    throw new Error('Failed to fetch restaurants')
+  }
+  return response.json()
+}
+
 export const addRestaurant = async (restaurantData, token) => {
   const response = await fetch(baseUrl, {
     method: 'POST',

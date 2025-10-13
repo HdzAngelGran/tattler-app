@@ -2,8 +2,9 @@ import { Button } from 'primereact/button'
 import { Card } from 'primereact/card'
 import { Chip } from 'primereact/chip'
 import { Rating } from 'primereact/rating'
+import { getPriceSigns } from '../utils/priceTransform'
 
-const RestaurantCard = ({ data }) => {
+const RestaurantCard = ({ data, onClickInfo }) => {
   const header = (
     <img
       src={`https://picsum.photos/id/${data.image}/300/200`}
@@ -11,11 +12,17 @@ const RestaurantCard = ({ data }) => {
       style={{ borderRadius: '6px 6px 0 0' }}
     />
   )
-  const subTitle = <Rating value={4} cancel={false} readOnly />
+  const subTitle = (
+    <Rating value={data?.averageRating || 0} cancel={false} readOnly />
+  )
 
   const footer = (
     <>
-      <Button label='More info' />
+      <Button
+        label='More info'
+        className='mr-2'
+        onClick={() => onClickInfo(data._id)}
+      />
       <Button label='Add review' text />
     </>
   )
@@ -29,7 +36,8 @@ const RestaurantCard = ({ data }) => {
       className='w-full md:w-25rem'
     >
       <div>
-        <Chip label={data.cuisine} className='mr-2' /> $$$
+        <Chip label={data.cuisine} className='mr-2' />{' '}
+        {getPriceSigns(data.priceRange)}
       </div>
       <p>
         {data.address.city} {data.address.state} {data.address.zipCode}
