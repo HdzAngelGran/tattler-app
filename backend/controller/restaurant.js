@@ -1,7 +1,6 @@
+import mongoose from 'mongoose'
 import TattlerError from '../middleware/tattlerError.js'
 import { Restaurant } from '../model/restaurant.model.js'
-import { Review } from '../model/review.model.js'
-
 class RestaurantController {
   constructor() {
     this.model = Restaurant
@@ -76,9 +75,31 @@ class RestaurantController {
 
   getById = async (req, res) => {
     const { id } = req.params
-    const restaurant = await this.model.findById(id).lean()
-    if (!restaurant) throw new TattlerError(404, 'Restaurant not found')
-    res.status(200).json(restaurant)
+
+    const restaurant = await this.model.aggregate([
+      {
+        $match: { _id: new mongoose.Types.ObjectId(id) },
+      },
+      {
+        $lookup: {
+          from: 'reviews',
+          localField: '_id',
+          foreignField: 'restaurant',
+          as: 'reviews',
+        },
+      },
+      {
+        $addFields: {
+          averageRating: { $avg: '$reviews.rating' },
+        },
+      },
+    ])
+
+    if (!restaurant.length) {
+      throw new TattlerError(404, 'Restaurant not found')
+    }
+
+    res.status(200).json(restaurant[0])
   }
 }
 
