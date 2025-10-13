@@ -1,0 +1,6 @@
+
+> tattler@1.0.0 start
+> node --watch index.js
+
+Server running on http://localhost:8081/
+Connected to MongoDB
