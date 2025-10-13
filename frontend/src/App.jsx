@@ -6,6 +6,7 @@ function App() {
   return (
     <div className='my-4 px-4 w-full'>
       <Header />
+      <Restaurants />
       <Footer />
     </div>
   )
