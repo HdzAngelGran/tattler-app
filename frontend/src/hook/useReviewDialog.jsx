@@ -7,10 +7,6 @@ const useReviewDialog = () => {
   if (context === undefined)
     throw new Error('useReviewDialog must be used within a ReviewProvider')
 
-  useEffect(() => {
-    console.log(context.showDialog)
-  }, [context.showDialog])
-
   return context
 }
 
