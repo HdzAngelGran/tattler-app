@@ -20,12 +20,12 @@ const LinkVerify = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      login(data.token)
+      login(token)
       setTimeout(() => {
         navigate('/')
       }, 2000)
     }
-  }, [isSuccess, navigate, login, data])
+  }, [isSuccess, navigate, login, data, token])
 
   return (
     <div className='w-full flex flex-column align-items-center gap-4'>
