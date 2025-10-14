@@ -9,7 +9,7 @@ class UserController {
   }
 
   #generateMagicLink = (loginToken) => {
-    return `http://localhost:${process.env.PORT}/api/v1/user/verify?token=${loginToken}`
+    return `${process.env.FRONT_URL}/user/verify?token=${loginToken}`
   }
 
   #generateLoginMessage = (magicLink) => {
