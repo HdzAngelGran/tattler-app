@@ -7,6 +7,7 @@ import useRestaurantsList from '../hook/useRestaurantsList'
 import useFilters from '../hook/useFilters'
 import Searchbar from '../components/Searchbar'
 import RestaurantInfo from '../components/RestaurantInfo'
+import AddReviewDialog from '../components/AddReviewDialog'
 
 const Restaurants = () => {
   const [first, setFirst] = useState(0)
@@ -43,6 +44,7 @@ const Restaurants = () => {
 
   return (
     <main className='my-4 w-full flex flex-column justify-content-center'>
+      <AddReviewDialog />
       <RestaurantInfo
         visible={showModal}
         setVisible={setShowModal}

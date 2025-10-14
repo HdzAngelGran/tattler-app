@@ -3,8 +3,17 @@ import { Card } from 'primereact/card'
 import { Chip } from 'primereact/chip'
 import { Rating } from 'primereact/rating'
 import { getPriceSigns } from '../utils/priceTransform'
+import AddReviewDialog from './AddReviewDialog'
+import useReviewDialog from '../hook/useReviewDialog'
 
 const RestaurantCard = ({ data, onClickInfo }) => {
+  const { setRestaurantId, setShowDialog } = useReviewDialog()
+
+  const showAddReview = () => {
+    setShowDialog(true)
+    setRestaurantId(data._id)
+  }
+
   const header = (
     <img
       src={`https://picsum.photos/id/${data.image}/300/200`}
@@ -23,7 +32,7 @@ const RestaurantCard = ({ data, onClickInfo }) => {
         className='mr-2'
         onClick={() => onClickInfo(data._id)}
       />
-      <Button label='Add review' text />
+      <Button label='Add review' text onClick={showAddReview} />
     </>
   )
 

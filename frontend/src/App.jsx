@@ -5,6 +5,7 @@ import Restaurants from './pages/Restaurants'
 import Login from './pages/Login'
 import LinkVerify from './pages/LinkVerify'
 import { AuthProvider } from './context/AuthContext'
+import { ReviewProvider } from './context/ReviewContext'
 
 function App() {
   return (
@@ -13,7 +14,14 @@ function App() {
         <div className='my-4 px-4 w-full'>
           <Header />
           <Routes>
-            <Route path='/' element={<Restaurants />} />
+            <Route
+              path='/'
+              element={
+                <ReviewProvider>
+                  <Restaurants />
+                </ReviewProvider>
+              }
+            />
             <Route path='/login' element={<Login />} />
             <Route path='user/verify' element={<LinkVerify />} />
           </Routes>

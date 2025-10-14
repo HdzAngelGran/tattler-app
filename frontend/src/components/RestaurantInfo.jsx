@@ -8,6 +8,8 @@ import { Rating } from 'primereact/rating'
 import { ScrollPanel } from 'primereact/scrollpanel'
 import { Skeleton } from 'primereact/skeleton'
 import { getPriceSigns } from '../utils/priceTransform'
+import { Button } from 'primereact/button'
+import useReviewDialog from '../hook/useReviewDialog'
 
 const RestaurantInfo = ({ restaurantId, visible, setVisible }) => {
   const {
@@ -20,6 +22,13 @@ const RestaurantInfo = ({ restaurantId, visible, setVisible }) => {
     isLoading: isLoadingReview,
     isError: isErrorReview,
   } = useReviews(restaurantId)
+
+  const { setRestaurantId, setShowDialog } = useReviewDialog()
+
+  const showAddReview = () => {
+    setShowDialog(true)
+    setRestaurantId(restaurantId)
+  }
 
   return (
     <Dialog
@@ -81,6 +90,9 @@ const RestaurantInfo = ({ restaurantId, visible, setVisible }) => {
               reviews.map((review) => (
                 <ReviewCard key={review._id} review={review} />
               ))}
+            {!isLoadingReview && (
+              <Button label='Add review' text onClick={showAddReview} />
+            )}
           </div>
         </ScrollPanel>
       </div>
