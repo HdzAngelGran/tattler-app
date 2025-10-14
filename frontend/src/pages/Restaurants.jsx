@@ -8,6 +8,7 @@ import useFilters from '../hook/useFilters'
 import Searchbar from '../components/Searchbar'
 import RestaurantInfo from '../components/RestaurantInfo'
 import AddReviewDialog from '../components/AddReviewDialog'
+import AddRestaurantDialog from '../components/AddRestaurantDialog'
 
 const Restaurants = () => {
   const [first, setFirst] = useState(0)
@@ -27,6 +28,7 @@ const Restaurants = () => {
   const { data = {}, isLoading, isError } = useRestaurantsList(filters)
 
   const [showModal, setShowModal] = useState(false)
+  const [showDialogAddRestaurant, setShowDialogAddRestaurant] = useState(false)
   const [restaurantId, setRestaurantId] = useState(null)
 
   const { restaurants = [], pagination = {} } = data
@@ -45,6 +47,10 @@ const Restaurants = () => {
   return (
     <main className='my-4 w-full flex flex-column justify-content-center'>
       <AddReviewDialog />
+      <AddRestaurantDialog
+        showDialog={showDialogAddRestaurant}
+        setShowDialog={setShowDialogAddRestaurant}
+      />
       <RestaurantInfo
         visible={showModal}
         setVisible={setShowModal}
@@ -55,6 +61,7 @@ const Restaurants = () => {
         setName={setName}
         cuisine={cuisine}
         setCuisine={setCuisine}
+        setShowDialog={setShowDialogAddRestaurant}
       />
       {isError && <Message text='Fail to fetch restaurants' severity='error' />}
       {!isLoading && restaurants.length == 0 && <p>No restaurants found</p>}

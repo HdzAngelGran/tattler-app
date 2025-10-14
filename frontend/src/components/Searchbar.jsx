@@ -1,10 +1,11 @@
+import { Button } from 'primereact/button'
 import { IconField } from 'primereact/iconfield'
 import { InputIcon } from 'primereact/inputicon'
 import { InputText } from 'primereact/inputtext'
 import { Dropdown } from 'primereact/dropdown'
 
 const Searchbar = (props) => {
-  const { name, setName, cuisine, setCuisine } = props
+  const { name, setName, cuisine, setCuisine, setShowDialog } = props
 
   const cuisines = [
     { name: 'Mexican', code: 'Mexican' },
@@ -47,9 +48,14 @@ const Searchbar = (props) => {
         onChange={(e) => setCuisine(e.target.value)}
         options={cuisines}
         optionLabel='name'
-        placeholder='Select a City'
+        placeholder='Select a Cuisine'
         className='w-full md:w-14rem'
         showClear
+      />
+      <Button
+        label='New Restaurant'
+        className='mr-2 w-full md:w-auto'
+        onClick={() => setShowDialog(true)}
       />
     </nav>
   )
