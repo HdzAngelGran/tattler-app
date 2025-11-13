@@ -28,7 +28,7 @@ const Header = () => {
               </button>
             </li>
           ) : (
-            location.pathname !== '/login' && (
+            !['/login', '/signup'].includes(location.pathname) && (
             <>
               <li>
                 <Link
